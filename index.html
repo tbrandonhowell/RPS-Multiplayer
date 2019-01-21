@@ -1,0 +1,164 @@
+<!doctype <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <!-- ^^^ from https://stackoverflow.com/questions/46087953/how-do-i-add-an-animated-bounce-with-jquery -->
+    
+    
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    
+    <!-- image sources
+    https://www.flickr.com/photos/darko_pevec/2171775257/in/photolist-4iUV7Z-nTgxs-2yW5V-2r4NGb-9rvC9Z-9XegSf-Cnhze7-74TbsF-ndBEf-7c6ux4-23Stvmo-9zQm9e-Mujh-7xScYm-4YgCJh-4zebFf-7camTb-4g6w2H-698ust-ZtqHCp-6L1As5-8bG2wi-7D2SW-gXC7J5-cfKK7S-5KSJ4e-7M3u4G-rGdH-8HzTas-psksM-Wf3SNV-eZytL-9voDrj-Ah7JU-nLWHm3-97rvUf-nwwZmq-nwvgt6-nwy5Bn-az6f2N-nP2N46-nP3dq2-dhhzJS-nwvJyD-nNYvk1-bZHC9f-7LYvHv-6ArFn4-nww5Km-nQNDGP
+     -->
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="row" id="rowTitle">
+            <div class="col-md-2"><!-- left margin div --></div>
+            <div class="col-md-8 text-center">
+                <h1>Rock / Paper / Scissors</h1>
+            </div>
+            <div class="col-md-2"><!-- left margin div --></div>
+        </div>
+
+        <div class="row" id="rowPlayers"> <!-- row that contains player info -->
+            <div class="col-md-2"><!-- left margin div --></div>
+            <div class="col-md-4 text-center">
+                <h2>Brandon</h2>
+                <h3>Wins: X</h3>
+                <div id="testnewparent">
+                    <img src="" class="img-thumbnail" id="waiting1" style="width: 160px; height: 160px;">
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <h2>Other Person</h2>
+                <h3>Wins: X</h3>
+                <img src="" class="img-thumbnail" id="waiting2" style="width: 160px; height: 160px;">
+            </div>
+            <div class="col-md-2"><!-- right margin div --></div>
+        </div>
+
+        <div class="row mt-4" id="rowControls"> <!-- row that contains game controls -->
+            <div class="col-md-2"><!-- left margin div --></div>
+            <div class="col-md-2 text-center">
+                <h1 id="effect" class="img-thumbnail" style="height: 160px; line-height:150px;">PLAY:</h1>
+            </div>
+            <div class="col-md-2">
+                <div id="testoldparent">
+                    <img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="rock" dataValue="rock">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <img src="assets/images/paper.jpg" class="img-thumbnail rpsImage" id="paper" dataValue="paper">
+            </div>
+            <div class="col-md-2">
+                <img src="assets/images/scissors.jpg" class="img-thumbnail rpsImage" id="scissors" dataValue="scissors">
+            </div>
+            <div class="col-md-2"><!-- right margin div --></div>
+        </div>
+
+    </div>
+
+<!-- MODAL: First to Game -->
+    <div class="modal fade" id="first-to-game" tabindex="-1" role="dialog" aria-labelledby="first-to-gameModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="first-to-gameModalLabel">Welcome!</h5>
+            </div>
+            <div class="modal-body">
+                <h4>No one is playing yet. Enter your name, click "Start Game," and wait for an opponent. Be the first player to win five rounds!</h4>
+                <input type="text" class="form-control playerName">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" id="startButton">Start Game</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<!-- MODAL: Second to Game -->
+    <div class="modal fade" id="second-to-game" tabindex="-1" role="dialog" aria-labelledby="second-to-gameModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="second-to-gameModalLabel">Welcome!</h5>
+            </div>
+            <div class="modal-body">
+                <h4>Lucky you! A player is already waiting to challenge you to Rock Paper Scissors. Enter your name and click "Join Game" to play. Be the first player to win five rounds!</h4>
+                <input type="text" class="form-control playerName">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" id="joinButton">Join Game</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<!-- MODAL: Lost Game -->
+    <div class="modal fade" id="lost-game" tabindex="-1" role="dialog" aria-labelledby="lost-gameModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="lost-gameModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                <h4>Sorry! You were bested by your opponent! Try again?</h4>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success newGameButton" data-dismiss="modal">Join a New Game</button>
+            <button type="button" class="btn btn-secondary leaveButton" data-dismiss="modal">I'm Out of Here</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<!-- MODAL: Won Game -->
+    <div class="modal fade" id="won-game" tabindex="-1" role="dialog" aria-labelledby="won-gameModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="won-gameModalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                <h4>Congratulations! You bested your opponent! Play again?</h4>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success newGameButton" data-dismiss="modal">Join a New Game</button>
+            <button type="button" class="btn btn-secondary leaveButton" data-dismiss="modal">I'm Out of Here</button>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDNnFAkjgoZZtth3qchOp0BJjitkGZ53Mk",
+        authDomain: "bootcamp-rock-paper-scissors.firebaseapp.com",
+        databaseURL: "https://bootcamp-rock-paper-scissors.firebaseio.com",
+        projectId: "bootcamp-rock-paper-scissors",
+        storageBucket: "",
+        messagingSenderId: "700365938697"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="assets/js/testmove.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>
