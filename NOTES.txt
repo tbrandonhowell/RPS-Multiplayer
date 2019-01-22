@@ -1,0 +1,48 @@
+Datbase structure: 
+id
+p1_uid
+p2_uid
+p1_name
+p2_name
+p1_move
+p2_move
+p1_score
+p2_score
+round
+
+{
+    id: [some unique identifier],
+    round: [1-5],
+    "Brandon": {
+        move: "",
+        score: "",
+    },
+    "Other Guy": {
+        move: "",
+        score "",
+    }
+}
+
+
+Upon opening the page, the JS will hit the database and look for the first game object with only three keys
+
+If it finds a match, then it will append a new player object into the game object
+
+otherwise it will create a new game object, and append a new player object into the game object
+
+depending on whether the player is p1/2:
+- their name is written into the p1/2_name field
+- when they make a move for the round, it is written to the p1/2_move field
+
+need a listener for the p1_move and p2_move fields, if both have values, then:
+
+execute the logic to see whether the player's move beats the opponent's move
+if you lost, then display message for lost round
+
+^^ but will this listener actually work, since it would keep firing until the moves were cleared from the database? 
+^^ Or can it trigger only once when the fields are updated?
+
+
+
+
+

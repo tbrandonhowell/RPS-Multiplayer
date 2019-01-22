@@ -8,14 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     <!-- ^^^ from https://stackoverflow.com/questions/46087953/how-do-i-add-an-animated-bounce-with-jquery -->
-    
-    
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-    
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <!-- image sources
     https://www.flickr.com/photos/darko_pevec/2171775257/in/photolist-4iUV7Z-nTgxs-2yW5V-2r4NGb-9rvC9Z-9XegSf-Cnhze7-74TbsF-ndBEf-7c6ux4-23Stvmo-9zQm9e-Mujh-7xScYm-4YgCJh-4zebFf-7camTb-4g6w2H-698ust-ZtqHCp-6L1As5-8bG2wi-7D2SW-gXC7J5-cfKK7S-5KSJ4e-7M3u4G-rGdH-8HzTas-psksM-Wf3SNV-eZytL-9voDrj-Ah7JU-nLWHm3-97rvUf-nwwZmq-nwvgt6-nwy5Bn-az6f2N-nP2N46-nP3dq2-dhhzJS-nwvJyD-nNYvk1-bZHC9f-7LYvHv-6ArFn4-nww5Km-nQNDGP
      -->
-
 </head>
 <body>
     <div class="container">
@@ -33,14 +29,16 @@
             <div class="col-md-4 text-center">
                 <h2>Brandon</h2>
                 <h3>Wins: X</h3>
-                <div id="testnewparent">
-                    <img src="" class="img-thumbnail" id="waiting1" style="width: 160px; height: 160px;">
+                <div id="yourMove">
+                    <img src="" class="img-thumbnail img160" id="waiting1">
                 </div>
             </div>
             <div class="col-md-4 text-center">
                 <h2>Other Person</h2>
                 <h3>Wins: X</h3>
-                <img src="" class="img-thumbnail" id="waiting2" style="width: 160px; height: 160px;">
+                <div id="theirMove">
+                    <img src="" class="img-thumbnail img160" id="waiting2">
+                </div>
             </div>
             <div class="col-md-2"><!-- right margin div --></div>
         </div>
@@ -50,21 +48,33 @@
             <div class="col-md-2 text-center">
                 <h1 id="effect" class="img-thumbnail" style="height: 160px; line-height:150px;">PLAY:</h1>
             </div>
-            <div class="col-md-2">
-                <div id="testoldparent">
-                    <img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="rock" dataValue="rock">
-                </div>
+            <div class="col-md-2" id="divRock">
+                <img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="rock" dataValue="rock">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" id="divPaper">
                 <img src="assets/images/paper.jpg" class="img-thumbnail rpsImage" id="paper" dataValue="paper">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" id="divScissors">
                 <img src="assets/images/scissors.jpg" class="img-thumbnail rpsImage" id="scissors" dataValue="scissors">
             </div>
             <div class="col-md-2"><!-- right margin div --></div>
         </div>
 
     </div>
+
+<!-- hidden divs for competitor plays -->
+    <div id="offToTheSide">
+        <div id="divTheirRock">
+            <img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="theirRock" dataValue="rock">
+        </div>
+        <div id="divTheirPaper">
+            <img src="assets/images/paper.jpg" class="img-thumbnail rpsImage" id="theirPaper" dataValue="paper">
+        </div>
+        <div id="divTheirScissors">
+            <img src="assets/images/scissors.jpg" class="img-thumbnail rpsImage" id="theirScissors" dataValue="scissors">
+        </div>
+    </div>
+    
 
 <!-- MODAL: First to Game -->
     <div class="modal fade" id="first-to-game" tabindex="-1" role="dialog" aria-labelledby="first-to-gameModalLabel" aria-hidden="true">
@@ -157,7 +167,7 @@
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
-    <script src="assets/js/testmove.js"></script>
+    <script src="assets/js/moveCode.js"></script>
     <script src="assets/js/main.js"></script>
 
 </body>

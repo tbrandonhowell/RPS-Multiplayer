@@ -36,18 +36,23 @@ if (window.localStorage.getItem('testItem') !== "") { // if the local storage is
 
 // =================================
 // EVENT: watch for click from the "play" section
-$(".rpsImage").on("click", function() {
-    $("#testnewparent").html("");
+$(document).on("click", ".rpsImage", function() { // watch for the click
+    $("#yourMove").html("");
     if ($(this).attr("dataValue") == "rock") {
         console.log("rock");
-        $('#rock').parentToAnimate('#testnewparent', 'fast');
+        $('#rock').parentToAnimate('#yourMove', 'fast');
+        $("#divRock").html('<img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="rock" dataValue="rock">');
     } else if ($(this).attr("dataValue") == "paper") {
         console.log("paper");
-        $('#paper').parentToAnimate('#testnewparent', 'fast');
+        $('#paper').parentToAnimate('#yourMove', 'fast');
+        $("#divPaper").html('<img src="assets/images/paper.jpg" class="img-thumbnail rpsImage" id="paper" dataValue="paper">');
     } else if ($(this).attr("dataValue") == "scissors") {
         console.log("scissors");
-        $('#scissors').parentToAnimate('#testnewparent', 'fast');
+        $('#scissors').parentToAnimate('#yourMove', 'fast');
+        $("#divScissors").html('<img src="assets/images/scissors.jpg" class="img-thumbnail rpsImage" id="scissors" dataValue="scissors">');
     }
+    
+    enemyPlay("paper");
 });
 // =================================
 
@@ -88,4 +93,77 @@ $(document).ready(function() {
 // $("#lost-game").modal(); // trigger this modal if you lost
 // $("#won-game").modal(); // trigger this modal if you won
 
+// =================================
+
+
+
+// =================================
+// Load the competitor's move into their slot
+// will need some sort of event listener to watch the DB for a change
+// var enemyPlay = function(move) {
+//     $("#waiting2").fadeTo(1000,0.30, function() {
+//         $("#waiting2").attr("src","assets/images/" + move + ".jpg");
+//     }).fadeTo(1000,1);
+//     return false;
+//   };
+
+var enemyPlay = function(move) {
+    console.log(move);
+    $("#theirMove").html("");
+    if (move == "rock") {
+        $('#theirRock').parentToAnimate('#theirMove', 'fast');
+        $("#divTheirRock").html('<img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="theirRock" dataValue="rock">');
+    } else if (move == "paper") {
+        $('#theirPaper').parentToAnimate('#theirMove', 'fast');
+        $("#divTheirPaper").html('<img src="assets/images/paper.jpg" class="img-thumbnail rpsImage" id="theirPaper" dataValue="paper">');
+    } else if (move == "scissors") {
+        $('#theirScissors').parentToAnimate('#theirMove', 'fast');
+        $("#divTheirScissors").html('<img src="assets/images/scissors.jpg" class="img-thumbnail rpsImage" id="theirScissors" dataValue="scissors">');
+    }
+};
+  
+
+// enemyPlay("paper");
+
+// $("#waiting2").attr("src","assets/images/rock.jpg");
+// $("#waiting2").attr("src","assets/images/paper.jpg");
+// $("#waiting2").attr("src","assets/images/scissors.jpg").fadeTo();
+// =================================
+
+
+// TODO: why did I duplicate thos code?
+// =================================
+// // EVENT: watch for click from the "play" section
+// $(document).on("click", ".rpsImage", function() { // watch for the click
+//     $("#testnewparent").html("");
+//     if ($(this).attr("dataValue") == "rock") {
+//         console.log("rock");
+//         $('#rock').parentToAnimate('#testnewparent', 'fast');
+//         $("#divRock").html('<img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="rock" dataValue="rock">');
+//     } else if ($(this).attr("dataValue") == "paper") {
+//         console.log("paper");
+//         $('#paper').parentToAnimate('#testnewparent', 'fast');
+//         $("#divPaper").html('<img src="assets/images/paper.jpg" class="img-thumbnail rpsImage" id="paper" dataValue="paper">');
+//     } else if ($(this).attr("dataValue") == "scissors") {
+//         console.log("scissors");
+//         $('#scissors').parentToAnimate('#testnewparent', 'fast');
+//         $("#divScissors").html('<img src="assets/images/scissors.jpg" class="img-thumbnail rpsImage" id="scissors" dataValue="scissors">');
+//     }
+    
+//     enemyPlay("paper");
+// });
+// =================================
+
+
+// =================================
+// FUNCTION: Reset play buttons (needed after the animations)
+var resetButtons = function() {
+    $("#divRock").empty();
+    $("#divPaper").empty();
+    $("#divScissors").empty();
+    $("#divRock").html('<img src="assets/images/rock.jpg" class="img-thumbnail rpsImage" id="rock" dataValue="rock">');
+    $("#divPaper").html('<img src="assets/images/paper.jpg" class="img-thumbnail rpsImage" id="paper" dataValue="paper">');
+    $("#divScissors").html('<img src="assets/images/scissors.jpg" class="img-thumbnail rpsImage" id="scissors" dataValue="scissors">');
+};
+resetButtons();
 // =================================
